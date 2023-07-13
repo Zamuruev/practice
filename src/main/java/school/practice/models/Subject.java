@@ -9,7 +9,6 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Long id;
-
     @Column(name = "name")
     String name;
 
