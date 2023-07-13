@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import school.practice.models.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
+
 }
