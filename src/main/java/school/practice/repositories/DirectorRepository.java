@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DirectorRepository extends JpaRepository<Director,Long> {
-    List<SchoolClass> findAllBy(Long id);
+    List<Director> findAllBy(Long id);
 }
