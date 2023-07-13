@@ -9,10 +9,4 @@ public class SchoolClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Override
-    public String toString() {
-        return "Привет Рома {" +
-                "id=" + id +
-                '}';
-    }
 }
