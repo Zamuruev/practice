@@ -1,6 +1,7 @@
 package school.practice.dtos;
 
 public class StudentDto {
+    private SchoolClassDto schoolClass;
     private Long id;
     private String surname;
     private String name;
@@ -35,6 +36,8 @@ public class StudentDto {
     public Long getPhone() {return phone;}
 
     public void setPhone(Long phone) {this.phone = phone;}
+
+    public SchoolClassDto getSchoolClass(){return schoolClass;}
 
     @Override
     public String toString() {

@@ -5,11 +5,14 @@ import jakarta.persistence.*;
 @Table(name = "students")
 public class Student extends User {
 
+    private SchoolClass schoolClass;
+
     public Student(String surname, String name, String fatherName, Long phone) {
         this.surname = surname;
         this.name = name;
         this.fatherName = fatherName;
         this.phone = phone;
+        this.schoolClass = schoolClass;
     }
 
     @Override
@@ -20,4 +23,7 @@ public class Student extends User {
 
     protected Student(){}
 
+    public SchoolClass getSchoolClass(){return schoolClass;}
+
+    public void setSchoolClass(SchoolClass schoolClass){this.schoolClass=schoolClass;}
 }

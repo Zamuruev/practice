@@ -9,6 +9,7 @@ public abstract class User {
     @Column(name = "id")
     protected Long id;
 
+
     @Column(name = "surname", length = 15, nullable = false)
     protected String surname;
 
