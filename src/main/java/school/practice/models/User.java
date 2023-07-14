@@ -9,7 +9,6 @@ public abstract class User {
     @Column(name = "id")
     protected Long id;
 
-
     @Column(name = "surname", length = 15, nullable = false)
     protected String surname;
 
@@ -37,5 +36,9 @@ public abstract class User {
     public Long getPhone() { return phone; }
 
     protected void setPhone(Long phone) { this.phone = phone; }
+
+    public Long getId() { return id; }
+
+    protected void setId(Long id) { this.id = id; }
 
 }

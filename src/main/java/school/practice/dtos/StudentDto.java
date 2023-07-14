@@ -1,52 +1,55 @@
 package school.practice.dtos;
 
 public class StudentDto {
-    private SchoolClassDto schoolClass;
     private Long id;
     private String surname;
     private String name;
     private String fatherName;
     private Long phone;
+    private SchoolClassDto schoolClassDto;
 
-    public StudentDto(Long id, String surname, String name, String fatherName, Long phone) {
+
+    public StudentDto(String surname, String name, String fatherName, Long phone, Long id, SchoolClassDto schoolClassDto) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.fatherName = fatherName;
         this.phone = phone;
+        this.schoolClassDto = schoolClassDto;
     }
 
-    public StudentDto(){}
-    public Long getId() {return id;}
+    public String getSurname() { return surname; }
 
-    public void setId(Long id) {this.id = id;}
+    public void setSurname(String surname) { this.surname = surname; }
 
-    public String getSurname() {return surname;}
+    public String getName() { return name; }
 
-    public void setSurname(String surname) {this.surname = surname;}
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {return name;}
+    public String getFatherName() { return fatherName; }
 
-    public void setName(String name) {this.name = name;}
+    public void setFatherName(String fatherName) { this.fatherName = fatherName; }
 
-    public String getFatherName() {return fatherName;}
+    public Long getPhone() { return phone; }
 
-    public void setFatherName(String fatherName) {this.fatherName = fatherName;}
+    public void setPhone(Long phone) { this.phone = phone; }
 
-    public Long getPhone() {return phone;}
+    public SchoolClassDto getSchoolClassDto() {
+        return schoolClassDto;
+    }
 
-    public void setPhone(Long phone) {this.phone = phone;}
+    public void setSchoolClassDto(SchoolClassDto schoolClassDto) {
+        this.schoolClassDto = schoolClassDto;
+    }
 
-    public SchoolClassDto getSchoolClass(){return schoolClass;}
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     @Override
     public String toString() {
-        return "StudentDto{" +
-                "id=" + id +
-                ", surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", fatherName='" + fatherName + '\'' +
-                ", phone=" + phone +
-                '}';
+        return "Student: " + this.id + ", " + this.surname
+                + " " + this.name + " " + this.fatherName + ", phone: " + this.phone + ", class: " + this.schoolClassDto.getName();
     }
+
 }
