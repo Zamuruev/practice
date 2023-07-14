@@ -2,6 +2,7 @@ package school.practice.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import school.practice.dtos.TeacherDto;
 import school.practice.models.Teacher;
 import school.practice.repositories.TeacherRepository;
 import school.practice.services.TeacherService;
@@ -12,7 +13,10 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public void register(Teacher teacher) {}
+    public void register(TeacherDto teacher) {}
+
+    @Override
+    public void expel(TeacherDto teacher){teacherRepository.deleteById(teacher.getId());}
 
 
 }

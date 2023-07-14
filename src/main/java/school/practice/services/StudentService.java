@@ -9,4 +9,6 @@ public interface StudentService<ID> {
     StudentDto register(StudentDto student);
     List<StudentDto> getAll();
 
+    void expel(StudentDto student);
+
 }

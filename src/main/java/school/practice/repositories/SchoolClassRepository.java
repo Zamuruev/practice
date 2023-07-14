@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SchoolClassRepository extends JpaRepository<SchoolClass,Long> {
     List<SchoolClass> findAllBy(Long id);
+    List<SchoolClass> findAllByName(String name);
 }

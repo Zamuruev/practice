@@ -30,6 +30,9 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    @Override
+    public void expel(StudentDto student){studentRepository.deleteById(student.getId());}
+
 
 
     @Override

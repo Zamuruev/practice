@@ -1,11 +1,9 @@
 package school.practice.services;
 
-import school.practice.models.SchoolClass;
+import school.practice.dtos.SchoolClassDto;
+
 
 public interface SchoolClassService<ID> {
-    void register(SchoolClass schoolClass);
-
-
-
-
+    void register(SchoolClassDto schoolClass);
+    void expel(SchoolClassDto schoolClass);
 }
