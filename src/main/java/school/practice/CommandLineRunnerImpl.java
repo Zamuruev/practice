@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import school.practice.services.*;
 
 import java.io.IOException;
+
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
@@ -16,8 +17,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     private SubjectService subjectService;
     @Autowired
     private TeacherService teacherService;
-
-
 
 
     @Override
