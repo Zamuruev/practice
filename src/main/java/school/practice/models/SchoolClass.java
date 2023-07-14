@@ -37,6 +37,8 @@ public class SchoolClass {
     public SchoolClass(String name) {
         this.name = name;
         students = new HashSet<Student>();
+        teachers = new HashSet<Teacher>();
+        subjects = new HashSet<Subject>();
     }
     protected SchoolClass(){}
 
@@ -55,6 +57,10 @@ public class SchoolClass {
     public Set<Teacher> getTeachers() { return teachers; }
 
     public void setTeachers(Set<Teacher> teachers) { this.teachers = teachers; }
+
+    public Set<Subject> getSubjects() { return subjects; }
+
+    public void setSubjects(Set<Subject> subjects) { this.subjects = subjects; }
 
     @Override
     public String toString() {
