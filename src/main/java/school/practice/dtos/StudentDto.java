@@ -52,4 +52,7 @@ public class StudentDto {
                 + " " + this.name + " " + this.fatherName + ", phone: " + this.phone + ", class: " + this.schoolClassDto.getName();
     }
 
+    public SchoolClassDto getSchoolClass() {
+        return schoolClassDto;
+    }
 }
