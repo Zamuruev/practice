@@ -5,6 +5,8 @@ import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.services.StudentService;
 
+import java.util.Optional;
+
 @RestController
 public class StudentController {
     @Autowired
@@ -34,6 +36,7 @@ public class StudentController {
 
     @GetMapping("/student/{id}")
     StudentDto one(@PathVariable Long id){
-        return (StudentDto) studentService.findStudent(id);
+        Optional<StudentDto> studentDto = studentService.findStudent(id);
+        return studentDto.orElse(null);
     }
 }

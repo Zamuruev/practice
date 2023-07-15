@@ -8,6 +8,8 @@ import school.practice.models.SchoolClass;
 import school.practice.models.Student;
 import school.practice.services.SchoolClassService;
 
+import java.util.Optional;
+
 
 @RestController
 public class SchoolClassController {
@@ -30,5 +32,9 @@ public class SchoolClassController {
     @DeleteMapping("/schoolclass/delete/{schoolclass}")
     void deleteSchoolClass(@PathVariable SchoolClassDto schoolClass){schoolClassService.expel(schoolClass.getId());}
 
-
+    @GetMapping("/schoolclass/{id}")
+    SchoolClassDto one(@PathVariable Long id){
+        Optional<SchoolClassDto> schoolClass = schoolClassService.findSchoolClass(id);
+        return schoolClass.orElse(null);
+    }
 }

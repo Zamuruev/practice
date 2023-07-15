@@ -1,9 +1,12 @@
 package school.practice.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import school.practice.dtos.StudentDto;
 import school.practice.dtos.SubjectDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.services.TeacherService;
+
+import java.util.Optional;
 
 @RestController
 public class TeacherController {
@@ -25,5 +28,11 @@ public class TeacherController {
 
     @DeleteMapping("/teacher/delete/{teacher}")
     void deleteTeacher(@PathVariable TeacherDto teacher){teacherService.expel(teacher.getId());}
+
+    @GetMapping("/teacher/{id}")
+    TeacherDto one(@PathVariable Long id){
+        Optional<TeacherDto> teacher = teacherService.findTeacher(id);
+        return teacher.orElse(null);
+    }
 
 }

@@ -2,8 +2,11 @@ package school.practice.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import school.practice.dtos.SchoolClassDto;
+import school.practice.dtos.StudentDto;
 import school.practice.dtos.SubjectDto;
 import school.practice.services.SubjectService;
+
+import java.util.Optional;
 
 @RestController
 public class SubjectController {
@@ -28,5 +31,10 @@ public class SubjectController {
     @GetMapping("/subject/{counthours}")
     SubjectDto one(@PathVariable SubjectDto subject){
         return (SubjectDto) subjectService.findSubjectByCounthoursOrderByCounthours(subject.getCountHours());
+    }
+    @GetMapping("/subject/{id}")
+    SubjectDto one(@PathVariable Long id){
+        Optional<SubjectDto> subject = subjectService.findSubject(id);
+        return subject.orElse(null);
     }
 }
