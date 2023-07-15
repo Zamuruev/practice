@@ -1,11 +1,13 @@
 package school.practice.services;
 
+import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.SubjectDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.models.SchoolClass;
 import school.practice.models.Subject;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface SubjectService<ID>{
@@ -24,5 +26,6 @@ public interface SubjectService<ID>{
     List<SubjectDto> findSubjectsByTeachers(Set<TeacherDto> teachers);
 
     List<SubjectDto> getAll();
+    Optional<SubjectDto> findSubject(ID id);
 
 }

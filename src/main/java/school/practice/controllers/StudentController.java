@@ -32,5 +32,8 @@ public class StudentController {
     @DeleteMapping("/student/{student}")
     void deleteStudent(@PathVariable StudentDto student){studentService.expel(student.getId());}
 
-
+    @GetMapping("/student/{id}")
+    StudentDto one(@PathVariable Long id){
+        return (StudentDto) studentService.findStudent(id);
+    }
 }

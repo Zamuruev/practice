@@ -10,6 +10,7 @@ import school.practice.repositories.SchoolClassRepository;
 import school.practice.services.SchoolClassService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,4 +46,8 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
         return null;
     }
 
+    @Override
+    public Optional<SchoolClassDto> findSchoolClass(Long id){
+        return Optional.ofNullable(modelMapper.map(schoolClassRepository.findById(id),SchoolClassDto.class));
+    }
 }

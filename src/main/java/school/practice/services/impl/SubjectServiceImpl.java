@@ -3,6 +3,7 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.SubjectDto;
 
 import school.practice.dtos.TeacherDto;
@@ -14,6 +15,7 @@ import school.practice.repositories.TeacherRepository;
 import school.practice.services.SubjectService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -94,6 +96,10 @@ public class SubjectServiceImpl implements SubjectService<Long> {
     @Override
     public List<SubjectDto> getAll() {
         return subjectRepository.findAll().stream().map((s) -> modelMapper.map(s, SubjectDto.class)).collect(Collectors.toList());
+    }
+    @Override
+    public Optional<SubjectDto> findSubject(Long id){
+        return Optional.ofNullable(modelMapper.map(subjectRepository.findById(id),SubjectDto.class));
     }
 
 }

@@ -3,11 +3,13 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.repositories.TeacherRepository;
 import school.practice.services.TeacherService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,4 +43,9 @@ public class TeacherServiceImpl implements TeacherService<Long> {
 
     @Override
     public void expel(Long id){teacherRepository.deleteById(id);}
+
+    @Override
+    public Optional<TeacherDto> findTeacher(Long id){
+        return Optional.ofNullable(modelMapper.map(teacherRepository.findById(id),TeacherDto.class));
+    }
 }

@@ -8,6 +8,7 @@ import school.practice.models.Teacher;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TeacherService <ID>{
     TeacherDto register(TeacherDto teacher);
@@ -15,5 +16,6 @@ public interface TeacherService <ID>{
     void expel(TeacherDto teacher);
     void expel(ID id);
     List<TeacherDto> findSubjectsBySurname(String surname);
+    Optional<TeacherDto> findTeacher(ID id);
 
 }
