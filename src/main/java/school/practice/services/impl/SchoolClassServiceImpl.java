@@ -3,11 +3,13 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.models.SchoolClass;
 import school.practice.repositories.SchoolClassRepository;
 import school.practice.services.SchoolClassService;
+import org.hibernate.Hibernate;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +40,11 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     public void expel(Long id){schoolClassRepository.deleteById(id);}
 
     @Override
+    public Optional<SchoolClassDto> findSchoolClass(Long aLong) {
+        return Optional.empty();
+    }
+
+    @Override
     public void expel(SchoolClassDto schoolClass){schoolClassRepository.deleteById(schoolClass.getId());}
 
     @Override
@@ -45,8 +52,19 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
         return null;
     }
 
+    @Transactional
     @Override
-    public Optional<SchoolClassDto> findSchoolClass(Long id){
-        return Optional.ofNullable(modelMapper.map(schoolClassRepository.findById(id),SchoolClassDto.class));
-    }
+    public List<StudentDto> findStudentsBySchoolClass(Long schoolClassId) {
+        SchoolClass schoolClass = schoolClassRepository.findById(schoolClassId).orElse(null);
+        if (schoolClass != null) {
+            // Принудительно инициализируем коллекцию students, чтобы избежать ошибки LazyInitializationException
+            Hibernate.initialize(schoolClass.getStudents());
+            return schoolClass.getStudents().stream()
+                    .map(student -> modelMapper.map(student, StudentDto.class))
+                    .collect(Collectors.toList());
+        } else {
+            return null;
+        }
+
+}
 }

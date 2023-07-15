@@ -18,5 +18,6 @@ public interface SchoolClassService<ID> {
 
     List<SchoolClassDto> getAll();
 
+    List<StudentDto> findStudentsBySchoolClass(Long schoolClassId);
 
 }

@@ -1,5 +1,6 @@
 package school.practice;
 
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,8 +26,13 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         seedData();
+        // Выводим студентов из класса с ID = 1
+        List<StudentDto> studentsInClass1 = schoolClassService.findStudentsBySchoolClass(1L);
+        System.out.println("Студенты из класса с ID = 1:");
+        for (StudentDto student : studentsInClass1) {
+            System.out.println(student.toString());
+        }
     }
-
 
     private void seedData() throws IOException {
 
