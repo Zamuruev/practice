@@ -41,7 +41,7 @@ public class Teacher extends User {
     @Override
     public String toString() {
         return "Teacher: " + this.id.toString() + ", " + this.surname
-                + " " + this.name + " " + this.fatherName + ", phone: " + this.phone + ", sunjects: " + this.subjects.toString();
+                + " " + this.name + " " + this.fatherName + ", phone: " + this.phone + ", subjects: " + this.subjects.toString();
     }
 
 }

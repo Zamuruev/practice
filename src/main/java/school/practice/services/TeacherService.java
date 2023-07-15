@@ -11,7 +11,9 @@ import java.util.List;
 public interface TeacherService <ID>{
     TeacherDto register(TeacherDto teacher);
     List<TeacherDto> getAll();
+    void expel(TeacherDto teacher);
+    void expel(ID id);
 
     List<TeacherDto> findSubjectsBySurname(String surname);
-    void expel(TeacherDto teacher);
+
 }

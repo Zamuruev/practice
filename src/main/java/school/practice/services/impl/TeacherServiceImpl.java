@@ -3,9 +3,7 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import school.practice.dtos.SubjectDto;
 import school.practice.dtos.TeacherDto;
-import school.practice.models.Teacher;
 import school.practice.repositories.TeacherRepository;
 import school.practice.services.TeacherService;
 
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TeacherServiceImpl implements TeacherService {
+public class TeacherServiceImpl implements TeacherService<Long> {
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
@@ -42,5 +40,6 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void expel(TeacherDto teacher){teacherRepository.deleteById(teacher.getId());}
 
-
+    @Override
+    public void expel(Long id){teacherRepository.deleteById(id);}
 }

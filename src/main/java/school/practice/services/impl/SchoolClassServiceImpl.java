@@ -35,6 +35,9 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     }
 
     @Override
+    public void expel(Long id){schoolClassRepository.deleteById(id);}
+
+    @Override
     public void expel(SchoolClassDto schoolClass){schoolClassRepository.deleteById(schoolClass.getId());}
 
     @Override

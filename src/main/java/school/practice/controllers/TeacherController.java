@@ -1,9 +1,7 @@
 package school.practice.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import school.practice.dtos.SubjectDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.services.TeacherService;
 
@@ -16,5 +14,13 @@ public class TeacherController {
 
     @PostMapping("/newTeacher")
     TeacherDto newTeacher(@RequestBody TeacherDto newTeacher){return teacherService.register(newTeacher);}
+
+    //не уверена на счет правильности реализации функции поиска предметов по фамили преподавателя перепроверь
+    @GetMapping("/teacher/subjects/{surname}")
+    TeacherDto one(@PathVariable TeacherDto teacher){
+        return (TeacherDto) teacherService.findSubjectsBySurname(teacher.getSurname());}
+
+    @DeleteMapping("/teacher/delete/{id}")
+    void deleteTeacher(@PathVariable Long id){teacherService.expel(id);}
 
 }
