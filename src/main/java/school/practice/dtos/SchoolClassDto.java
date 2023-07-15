@@ -1,17 +1,22 @@
 package school.practice.dtos;
 
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class SchoolClassDto {
     private Long id;
     private String name;
-    private Set<StudentDto> students;
+    private Set<StudentDto> students = new HashSet<>();
 
-
-    public SchoolClassDto(Long id, String name,Set<StudentDto> students) {
+    public SchoolClassDto(Long id, String name, Set<StudentDto> students) {
         this.id = id;
         this.name = name;
-        this.students=students;
+        this.students = students;
+    }
+
+    public SchoolClassDto() {
+        // Пустой публичный конструктор необходим для ModelMapper
     }
 
     public Long getId() {
@@ -30,9 +35,13 @@ public class SchoolClassDto {
         this.name = name;
     }
 
-    public Set<StudentDto> getStudents() {return students;}
+    public Set<StudentDto> getStudents() {
+        return students;
+    }
 
-    public void setStudents(Set<StudentDto> students) {this.students = students;}
+    public void setStudents(Set<StudentDto> students) {
+        this.students = students;
+    }
 
     @Override
     public String toString() {

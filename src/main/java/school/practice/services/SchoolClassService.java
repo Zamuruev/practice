@@ -12,7 +12,11 @@ public interface SchoolClassService<ID> {
     void expel(ID id);
     Optional<SchoolClassDto> findSchoolClass(ID id);
 
+    SchoolClassDto register(SchoolClassDto schoolClassDto);
+
     List<SchoolClassDto> findSchoolClassByStudent(StudentDto student);
 
     List<SchoolClassDto> getAll();
+
+
 }

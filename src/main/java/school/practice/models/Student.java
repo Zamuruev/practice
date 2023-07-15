@@ -7,8 +7,8 @@ import org.hibernate.annotations.Cascade;
 @Table(name = "students")
 public class Student extends User {
     @ManyToOne(optional = false)
-    @JoinColumn(name = "schoolclass_id", referencedColumnName = "id", nullable=false)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JoinColumn(name = "schoolclass_id", referencedColumnName = "id")
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     private SchoolClass schoolClass;
 
 

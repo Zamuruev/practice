@@ -3,6 +3,8 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import school.practice.controllers.SchoolClassNotFoundException;
+import school.practice.controllers.StudentNotFoundException;
 import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.models.SchoolClass;
@@ -19,19 +21,24 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService<Long> {
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
     private SchoolClassRepository schoolClassRepository;
 
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public StudentDto register(StudentDto student){
-        Student s = modelMapper.map(student,Student.class);
-        if (student.getSchoolClass().getId() != 0){
-            SchoolClass sc = schoolClassRepository.findById(student.getSchoolClass().getId()).get();
-            s.setSchoolClass(sc);
+    public StudentDto register(StudentDto studentDto) {
+        Student student = modelMapper.map(studentDto, Student.class);
+
+        if (studentDto.getSchoolClassId() != null) {
+            SchoolClass schoolClass = schoolClassRepository.findById(studentDto.getSchoolClassId())
+                    .orElseThrow(() -> new SchoolClassNotFoundException(studentDto.getSchoolClassId()));
+            student.setSchoolClass(schoolClass);
         }
-        return modelMapper.map(studentRepository.save(s),StudentDto.class);
+
+        return modelMapper.map(studentRepository.save(student), StudentDto.class);
     }
+
 
     @Override
     public void expel(StudentDto student){ studentRepository.deleteById(student.getId());}
@@ -73,6 +80,8 @@ public class StudentServiceImpl implements StudentService<Long> {
     public Optional<StudentDto> findStudent(Long id){
         return Optional.ofNullable(modelMapper.map(studentRepository.findById(id),StudentDto.class));
     }
+
+
 
 }
 

@@ -20,10 +20,18 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
+    public SchoolClassDto register(SchoolClassDto schoolClassDto) {
+        SchoolClass schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
+        return modelMapper.map(schoolClassRepository.save(schoolClass), SchoolClassDto.class);
+    }
 
     @Override
-    public List<SchoolClassDto> findSchoolClassByStudent(StudentDto student){
-        return schoolClassRepository.findSchoolClassByStudent(student).stream().map((s)->modelMapper.map(s,SchoolClassDto.class)).collect(Collectors.toList());
+    public List<SchoolClassDto> findSchoolClassByStudent(StudentDto studentDto) {
+        List<SchoolClass> schoolClasses = schoolClassRepository.findSchoolClassByStudentId(studentDto.getId());
+        return schoolClasses.stream()
+                .map(s -> modelMapper.map(s, SchoolClassDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

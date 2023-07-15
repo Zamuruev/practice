@@ -6,32 +6,68 @@ public class StudentDto {
     private String name;
     private String fatherName;
     private Long phone;
+
+    private Long schoolClassId;
     private SchoolClassDto schoolClassDto;
 
-
-    public StudentDto(String surname, String name, String fatherName, Long phone, Long id) {
+    public StudentDto(Long id, String surname, String name, String fatherName, Long phone, Long schoolClassId) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.fatherName = fatherName;
         this.phone = phone;
+        this.schoolClassId = schoolClassId;
+    }
+    public StudentDto() {
+        // Пустой публичный конструктор необходим для ModelMapper
+    }
+    public Long getId() {
+        return id;
     }
 
-    public String getSurname() { return surname; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public String getSurname() {
+        return surname;
+    }
 
-    public String getName() { return name; }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getFatherName() { return fatherName; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setFatherName(String fatherName) { this.fatherName = fatherName; }
+    public String getFatherName() {
+        return fatherName;
+    }
 
-    public Long getPhone() { return phone; }
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
 
-    public void setPhone(Long phone) { this.phone = phone; }
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    public Long getSchoolClassId() {
+        return schoolClassId;
+    }
+
+    public void setSchoolClassId(Long schoolClassId) {
+        this.schoolClassId = schoolClassId;
+    }
 
     public SchoolClassDto getSchoolClassDto() {
         return schoolClassDto;
@@ -41,17 +77,10 @@ public class StudentDto {
         this.schoolClassDto = schoolClassDto;
     }
 
-    public Long getId() { return id; }
-
-    public void setId(Long id) { this.id = id; }
-
     @Override
     public String toString() {
         return "Student: " + this.id + ", " + this.surname
-                + " " + this.name + " " + this.fatherName + ", phone: " + this.phone + ", class: " + this.schoolClassDto.getName();
+                + " " + this.name + " " + this.fatherName + ", phone: " + this.phone;
     }
 
-    public SchoolClassDto getSchoolClass() {
-        return schoolClassDto;
-    }
 }
