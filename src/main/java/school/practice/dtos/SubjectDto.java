@@ -6,15 +6,15 @@ public class SubjectDto {
     private Long id;
     private String name;
     private int countHours;
-    private Set<String> schoolClassNames;
-    private Set<String> teacherNames;
+    private Set<SchoolClassDto> schoolClassesDto;
+    private Set<TeacherDto> teachersDto;
 
-    public SubjectDto(Long id, String name, int countHours, Set<String> schoolClassNames, Set<String> teacherNames) {
+    public SubjectDto(Long id, String name, int countHours, Set<SchoolClassDto> schoolClassesDto, Set<TeacherDto> teachersDto) {
         this.id = id;
         this.name = name;
         this.countHours = countHours;
-        this.schoolClassNames = schoolClassNames;
-        this.teacherNames = teacherNames;
+        this.schoolClassesDto = schoolClassesDto;
+        this.teachersDto = teachersDto;
     }
 
     public Long getId() {
@@ -41,24 +41,19 @@ public class SubjectDto {
         this.countHours = countHours;
     }
 
-    public Set<String> getSchoolClassNames() {
-        return schoolClassNames;
+    public Set<SchoolClassDto> getSchoolClassesDto() { return schoolClassesDto; }
+
+    public void setSchoolClassesDto(Set<SchoolClassDto> schoolClassesDto) {
+        this.schoolClassesDto = schoolClassesDto;
     }
 
-    public void setSchoolClassNames(Set<String> schoolClassNames) {
-        this.schoolClassNames = schoolClassNames;
-    }
+    public Set<TeacherDto> getTeachersDto() { return teachersDto; }
 
-    public Set<String> getTeacherNames() {
-        return teacherNames;
-    }
-
-    public void setTeacherNames(Set<String> teacherNames) {
-        this.teacherNames = teacherNames;
-    }
+    public void setTeachersDto(Set<TeacherDto> teachersDto) { this.teachersDto = teachersDto; }
 
     @Override
     public String toString() {
         return "Subject: " + id +", '" + name + '\'' + ", countHours: " + countHours;
     }
+
 }

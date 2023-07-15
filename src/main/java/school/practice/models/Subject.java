@@ -51,9 +51,7 @@ public class Subject {
 
     private void setCounthours(int counthours) { this.counthours = counthours; }
 
-    public SchoolClass getSchoolClass() { return (SchoolClass) schoolClass; }
-
-    public void setSchoolClass(SchoolClass schoolClass) { this.schoolClass = (Set<SchoolClass>) schoolClass; }
+    public Set<SchoolClass> getSchoolClass() { return schoolClass; }
 
     public void setSchoolClass(Set<SchoolClass> schoolClass) { this.schoolClass = schoolClass; }
 

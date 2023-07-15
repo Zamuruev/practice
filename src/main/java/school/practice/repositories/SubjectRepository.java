@@ -15,7 +15,7 @@ public interface SubjectRepository extends JpaRepository<Subject, Long> {
     @Query("SELECT DISTINCT s FROM Subject s JOIN s.teachers t WHERE t IN :teachers")
     List<Subject> findSubjectsByTeachers(@Param("teachers") Set<Teacher> teachers);
 
-    List<Subject> findSubjectBySchoolClass(SchoolClass schoolClass);
+    List<Subject> findSubjectBySchoolClass(String schoolClass);
 
     List<Subject> findSubjectByCounthoursOrderByCounthours(int counthours);
 
