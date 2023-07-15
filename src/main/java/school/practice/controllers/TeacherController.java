@@ -23,4 +23,7 @@ public class TeacherController {
     @DeleteMapping("/teacher/delete/{id}")
     void deleteTeacher(@PathVariable Long id){teacherService.expel(id);}
 
+    @DeleteMapping("/teacher/delete/{teacher}")
+    void deleteTeacher(@PathVariable TeacherDto teacher){teacherService.expel(teacher.getId());}
+
 }
