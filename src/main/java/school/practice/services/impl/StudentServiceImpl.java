@@ -41,7 +41,12 @@ public class StudentServiceImpl implements StudentService<Long> {
     public void transfer(StudentDto student, SchoolClassDto schoolClassDto) {
         Student s = studentRepository.findById(student.getId()).get();
         SchoolClass sc = schoolClassRepository.findById(schoolClassDto.getId()).get();
-        s.setSchoolClass(sc);
+        SchoolClass oldClass = s.getSchoolClass(); // Получаем текущий класс студента
+        if (oldClass != null) {
+            oldClass.getStudents().remove(s); // Удаляем студента из старого класса
+        }
+        s.setSchoolClass(sc); // Обновляем класс студента
+        sc.getStudents().add(s); // Добавляем студента в новый класс
         studentRepository.save(s);
     }
 
