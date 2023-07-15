@@ -1,6 +1,7 @@
 package school.practice.services;
 
 import school.practice.dtos.SubjectDto;
+import school.practice.dtos.TeacherDto;
 import school.practice.models.SchoolClass;
 import school.practice.models.Subject;
 
@@ -19,6 +20,8 @@ public interface SubjectService<ID>{
     List<SubjectDto> findSubjectBySchoolClass(String schoolClass);
 
     List<SubjectDto> findSubjectByCounthoursOrderByCounthours(int counthours);
+
+    List<SubjectDto> findSubjectsByTeachers(Set<TeacherDto> teachers);
 
     List<SubjectDto> getAll();
 

@@ -3,9 +3,9 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import school.practice.dtos.StudentDto;
 import school.practice.dtos.SubjectDto;
 
+import school.practice.dtos.TeacherDto;
 import school.practice.models.SchoolClass;
 import school.practice.models.Subject;
 import school.practice.models.Teacher;
@@ -39,7 +39,6 @@ public class SubjectServiceImpl implements SubjectService<Long> {
 
         return modelMapper.map(subjectRepository.save(s), SubjectDto.class);
     }
-
 
     @Override
     public void expel(SubjectDto subject){ subjectRepository.deleteById(subject.getId()); }
@@ -81,6 +80,15 @@ public class SubjectServiceImpl implements SubjectService<Long> {
     public List<SubjectDto> findSubjectByCounthoursOrderByCounthours(int counthours) {
         return subjectRepository.findSubjectByCounthoursOrderByCounthours(counthours).stream().map((s) -> modelMapper.map(s, SubjectDto.class)).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<SubjectDto> findSubjectsByTeachers(Set<TeacherDto> teachers) {
+        Set<Teacher> teacherEntities = teachers.stream().map(teacherDto -> modelMapper.map(teacherDto, Teacher.class)).collect(Collectors.toSet());
+
+        List<Subject> subjects = subjectRepository.findSubjectsByTeachers(teacherEntities);
+
+        return subjects.stream().map(subject -> modelMapper.map(subject, SubjectDto.class)).collect(Collectors.toList());
     }
 
     @Override
