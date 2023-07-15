@@ -9,5 +9,7 @@ import java.util.List;
 public interface SchoolClassService<ID> {
     SchoolClassDto register(SchoolClassDto schoolClass);
     void expel(SchoolClassDto schoolClass);
+    List<SchoolClassDto> findSchoolClassByStudent(StudentDto student);
+
     List<SchoolClassDto> getAll();
 }
