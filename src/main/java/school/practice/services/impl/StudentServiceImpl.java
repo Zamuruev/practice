@@ -12,6 +12,7 @@ import school.practice.repositories.StudentRepository;
 import school.practice.services.StudentService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService<Long> {
@@ -51,14 +52,20 @@ public class StudentServiceImpl implements StudentService<Long> {
     }
 
     @Override
-    public List<StudentDto> findStudentsBySchoolClass(SchoolClassDto schoolClassDto) {
-        return null;
+    public List<StudentDto> findStudentsBySchoolClass(String schoolClassName) {
+        return studentRepository.findAllBySchoolClassName(schoolClassName).stream().map((s) -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<StudentDto> findAllBySurname(String surname) {
+        return studentRepository.findAllBySurname(surname).stream().map((s) -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
     }
 
 
     @Override
     public List<StudentDto> getAll() {
-        return null;
+        return studentRepository.findAll().stream().map((s) -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
     }
 
 

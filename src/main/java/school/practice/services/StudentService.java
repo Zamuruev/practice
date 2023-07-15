@@ -15,7 +15,9 @@ public interface StudentService<ID> {
 
     void transfer(StudentDto student, SchoolClassDto schoolClassDto);
 
-    List<StudentDto> findStudentsBySchoolClass(SchoolClassDto schoolClassDto);
+    List<StudentDto> findStudentsBySchoolClass(String schoolClassName);
+
+    List<StudentDto> findAllBySurname(String surname);
 
     List<StudentDto> getAll();
 

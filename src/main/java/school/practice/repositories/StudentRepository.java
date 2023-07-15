@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findAllBySurname(String surname);
-    List<Student> findAllByid(Long id);
+    List<Student> findAllBySchoolClassName(String schoolClassName);
 }
