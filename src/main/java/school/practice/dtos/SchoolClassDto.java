@@ -5,16 +5,13 @@ import java.util.Set;
 public class SchoolClassDto {
     private Long id;
     private String name;
-    private Set<String> studentNames;
-    private Set<String> teacherNames;
-    private Set<String> subjectNames;
+    private Set<StudentDto> students;
 
-    public SchoolClassDto(Long id, String name, Set<String> studentNames, Set<String> teacherNames, Set<String> subjectNames) {
+
+    public SchoolClassDto(Long id, String name,Set<StudentDto> students) {
         this.id = id;
         this.name = name;
-        this.studentNames = studentNames;
-        this.teacherNames = teacherNames;
-        this.subjectNames = subjectNames;
+        this.students=students;
     }
 
     public Long getId() {
@@ -33,29 +30,9 @@ public class SchoolClassDto {
         this.name = name;
     }
 
-    public Set<String> getStudentNames() {
-        return studentNames;
-    }
+    public Set<StudentDto> getStudents() {return students;}
 
-    public void setStudentNames(Set<String> studentNames) {
-        this.studentNames = studentNames;
-    }
-
-    public Set<String> getTeacherNames() {
-        return teacherNames;
-    }
-
-    public void setTeacherNames(Set<String> teacherNames) {
-        this.teacherNames = teacherNames;
-    }
-
-    public Set<String> getSubjectNames() {
-        return subjectNames;
-    }
-
-    public void setSubjectNames(Set<String> subjectNames) {
-        this.subjectNames = subjectNames;
-    }
+    public void setStudents(Set<StudentDto> students) {this.students = students;}
 
     @Override
     public String toString() {

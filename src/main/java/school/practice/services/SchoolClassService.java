@@ -8,7 +8,6 @@ import java.util.Optional;
 
 
 public interface SchoolClassService<ID> {
-    SchoolClassDto register(SchoolClassDto schoolClass);
     void expel(SchoolClassDto schoolClass);
     void expel(ID id);
     Optional<SchoolClassDto> findSchoolClass(ID id);

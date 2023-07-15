@@ -18,9 +18,6 @@ public class SchoolClassController {
     @GetMapping("/schoolClasses")
     Iterable<SchoolClassDto> all(){return schoolClassService.getAll();}
 
-    @PostMapping("/newSchoolClass")
-    SchoolClassDto newSchoolClass(@RequestBody SchoolClassDto newSchoolClass){return schoolClassService.register(newSchoolClass);}
-
     @GetMapping("/schoolclass/{student}")
     SchoolClassDto one(@PathVariable StudentDto student){
         return (SchoolClassDto) schoolClassService.findSchoolClassByStudent(student);

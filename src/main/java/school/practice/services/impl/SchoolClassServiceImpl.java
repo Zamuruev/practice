@@ -19,16 +19,7 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     SchoolClassRepository schoolClassRepository;
     @Autowired
     private ModelMapper modelMapper;
-    @Override
-    public SchoolClassDto register(SchoolClassDto schoolClass){
-        /*Student s= modelMapper.map(student,Student.class);
-        if (student.getSchoolClass().getId() != 0){
-            SchoolClass g = schoolClassRepository.findById(student.getSchoolClass().getId()).get();
-            s.setSchoolClass(g);
-        }
-        return modelMapper.map(studentRepository.save(s),StudentDto.class);*/
-        return schoolClass;
-    }
+
 
     @Override
     public List<SchoolClassDto> findSchoolClassByStudent(StudentDto student){

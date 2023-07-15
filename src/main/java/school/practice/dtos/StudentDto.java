@@ -9,13 +9,12 @@ public class StudentDto {
     private SchoolClassDto schoolClassDto;
 
 
-    public StudentDto(String surname, String name, String fatherName, Long phone, Long id, SchoolClassDto schoolClassDto) {
+    public StudentDto(String surname, String name, String fatherName, Long phone, Long id) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.fatherName = fatherName;
         this.phone = phone;
-        this.schoolClassDto = schoolClassDto;
     }
 
     public String getSurname() { return surname; }

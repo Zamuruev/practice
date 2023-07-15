@@ -9,12 +9,10 @@ public class SubjectDto {
     private Set<SchoolClassDto> schoolClassesDto;
     private Set<TeacherDto> teachersDto;
 
-    public SubjectDto(Long id, String name, int countHours, Set<SchoolClassDto> schoolClassesDto, Set<TeacherDto> teachersDto) {
+    public SubjectDto(Long id, String name, int countHours) {
         this.id = id;
         this.name = name;
         this.countHours = countHours;
-        this.schoolClassesDto = schoolClassesDto;
-        this.teachersDto = teachersDto;
     }
 
     public Long getId() {

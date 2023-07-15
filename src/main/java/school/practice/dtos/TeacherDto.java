@@ -11,13 +11,11 @@ public class TeacherDto {
     private Set<String> schoolClassNames;
     private Set<String> subjectNames;
 
-    public TeacherDto(String surname, String name, String fatherName, Long phone, Set<String> schoolClassNames, Set<String> subjectNames, Long id) {
+    public TeacherDto(String surname, String name, String fatherName, Long phone) {
         this.surname = surname;
         this.name = name;
         this.fatherName = fatherName;
         this.phone = phone;
-        this.schoolClassNames = schoolClassNames;
-        this.subjectNames = subjectNames;
         this.id = id;
     }
 

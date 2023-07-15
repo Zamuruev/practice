@@ -9,6 +9,7 @@ import java.util.Set;
 @Table(name = "teachers")
 public class Teacher extends User {
 
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "teacher_class",
             joinColumns = @JoinColumn(name = "teacher_id"),
@@ -31,6 +32,7 @@ public class Teacher extends User {
     protected Teacher() {}
 
     public Set<SchoolClass> getSchoolClasses() { return schoolClasses; }
+
 
     public void setSchoolClasses(Set<SchoolClass> schoolClasses) { this.schoolClasses = schoolClasses; }
 
