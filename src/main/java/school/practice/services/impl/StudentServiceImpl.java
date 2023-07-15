@@ -12,6 +12,7 @@ import school.practice.repositories.StudentRepository;
 import school.practice.services.StudentService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,6 +69,10 @@ public class StudentServiceImpl implements StudentService<Long> {
         return studentRepository.findAll().stream().map((s) -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<StudentDto> findStudent(Long id){
+        return Optional.ofNullable(modelMapper.map(studentRepository.findById(id),StudentDto.class));
+    }
 
 }
 

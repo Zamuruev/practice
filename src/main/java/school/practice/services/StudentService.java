@@ -1,10 +1,12 @@
 package school.practice.services;
 
+import org.aspectj.apache.bcel.classfile.Module;
 import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.models.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentService<ID> {
     StudentDto register(StudentDto student);
@@ -20,5 +22,7 @@ public interface StudentService<ID> {
     List<StudentDto> findAllBySurname(String surname);
 
     List<StudentDto> getAll();
+
+    Optional<StudentDto> findStudent(ID id);
 
 }

@@ -6,6 +6,7 @@ import school.practice.dtos.SubjectDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.models.Teacher;
 
+
 import java.util.List;
 
 public interface TeacherService <ID>{
@@ -13,7 +14,6 @@ public interface TeacherService <ID>{
     List<TeacherDto> getAll();
     void expel(TeacherDto teacher);
     void expel(ID id);
-
     List<TeacherDto> findSubjectsBySurname(String surname);
 
 }

@@ -31,7 +31,6 @@ public class TeacherServiceImpl implements TeacherService<Long> {
     public List<TeacherDto> findSubjectsBySurname(String surname){
         return teacherRepository.findSubjectsBySurname(surname).stream().map((t)->modelMapper.map(t,TeacherDto.class)).collect(Collectors.toList());
     }
-
     @Override
     public List<TeacherDto> getAll() {
         return null;
