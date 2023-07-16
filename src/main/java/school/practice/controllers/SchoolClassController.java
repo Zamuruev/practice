@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
-import school.practice.models.SchoolClass;
-import school.practice.models.Student;
 import school.practice.services.SchoolClassService;
+import school.practice.services.StudentService;
 
 import java.util.Optional;
 
@@ -15,23 +14,30 @@ import java.util.Optional;
 public class SchoolClassController {
     @Autowired
     private SchoolClassService schoolClassService;
-    @GetMapping("/schoolClasses")
-    public Iterable<SchoolClassDto> all(){return schoolClassService.getAll();}
 
-    @GetMapping("/schoolclass/{student}")
-    SchoolClassDto one(@PathVariable StudentDto student){
-        return (SchoolClassDto) schoolClassService.findSchoolClassByStudent(student);
+    @Autowired
+    private StudentService studentService;
+
+
+    @GetMapping("/schoolClass")
+    public Iterable<SchoolClassDto> all() {
+        return schoolClassService.getAll();
     }
 
-    @DeleteMapping("/schoolclass/delete/{id}")
-    void deleteSchoolClass(@PathVariable Long id){schoolClassService.expel(id);}
-
-    @DeleteMapping("/schoolclass/delete/{schoolclass}")
-    void deleteSchoolClass(@PathVariable SchoolClassDto schoolClass){schoolClassService.expel(schoolClass.getId());}
-
-    @GetMapping("/schoolclass/{id}")
-    public SchoolClassDto one(@PathVariable Long id){
-        Optional<SchoolClassDto> schoolClass = schoolClassService.findSchoolClass(id);
-        return schoolClass.orElse(null);
+    @GetMapping("/schoolClass/{studentId}")
+    SchoolClassDto one(@PathVariable Long studentId) {
+        Optional<StudentDto> studentDto = studentService.findStudent(studentId);
+        if (studentDto.isPresent()) {
+            return (SchoolClassDto) schoolClassService.findSchoolClassByStudent(studentDto.get());
+        } else {
+            // Если студент не найден, вернем null
+            return null;
+        }
     }
+
+    @DeleteMapping("/schoolClass/delete/{id}")
+    void deleteSchoolClass(@PathVariable Long id) {
+        schoolClassService.expel(id);
+    }
+
 }

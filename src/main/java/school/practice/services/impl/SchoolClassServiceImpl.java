@@ -11,6 +11,7 @@ import school.practice.repositories.SchoolClassRepository;
 import school.practice.services.SchoolClassService;
 import org.hibernate.Hibernate;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,11 +30,18 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     }
 
     @Override
-    public List<SchoolClassDto> findSchoolClassByStudent(StudentDto studentDto) {
+    public SchoolClassDto findSchoolClassByStudent(StudentDto studentDto) {
         List<SchoolClass> schoolClasses = schoolClassRepository.findSchoolClassByStudentId(studentDto.getId());
-        return schoolClasses.stream()
-                .map(s -> modelMapper.map(s, SchoolClassDto.class))
-                .collect(Collectors.toList());
+        if (!schoolClasses.isEmpty()) {
+            // Предполагаем, что студент принадлежит только одному школьному классу
+            SchoolClass schoolClass = schoolClasses.get(0);
+            // Принудительно инициализируем коллекцию students, чтобы избежать ошибки LazyInitializationException
+            Hibernate.initialize(schoolClass.getStudents());
+            return modelMapper.map(schoolClass, SchoolClassDto.class);
+        } else {
+            // Если школьный класс не найден, вернем null
+            return null;
+        }
     }
 
     @Override

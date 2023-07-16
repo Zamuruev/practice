@@ -2,6 +2,7 @@ package school.practice.services.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import school.practice.controllers.SchoolClassNotFoundException;
 import school.practice.dtos.SchoolClassDto;
@@ -65,6 +66,7 @@ public class StudentServiceImpl implements StudentService<Long> {
     }
 
     @Override
+    @CacheEvict(value = "studentsBySurnameCache", allEntries = true)
     public List<StudentDto> findAllBySurname(String surname) {
         List<Student> students = studentRepository.findAllBySurname(surname);
         return students.stream()

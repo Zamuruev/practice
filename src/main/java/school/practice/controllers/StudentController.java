@@ -1,7 +1,7 @@
 package school.practice.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.services.StudentService;
 
@@ -46,7 +46,8 @@ public class StudentController {
     @GetMapping("/students/{id}")
     public StudentDto one(@PathVariable Long id) {
         Optional<StudentDto> studentDto = studentService.findStudent(id);
-        return studentDto.orElse(null);
+        return studentDto.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()).getBody();
+
     }
 
 }

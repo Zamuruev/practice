@@ -14,7 +14,7 @@ public interface SchoolClassService<ID> {
 
     SchoolClassDto register(SchoolClassDto schoolClassDto);
 
-    List<SchoolClassDto> findSchoolClassByStudent(StudentDto student);
+    SchoolClassDto findSchoolClassByStudent(StudentDto studentDto);
 
     List<SchoolClassDto> getAll();
 
