@@ -40,8 +40,8 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
     public void expel(Long id){schoolClassRepository.deleteById(id);}
 
     @Override
-    public Optional<SchoolClassDto> findSchoolClass(Long aLong) {
-        return Optional.empty();
+    public Optional<SchoolClassDto> findSchoolClass(Long id){
+        return Optional.ofNullable(modelMapper.map(schoolClassRepository.findById(id),SchoolClassDto.class));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SchoolClassServiceImpl implements SchoolClassService<Long> {
 
     @Override
     public List<SchoolClassDto> getAll() {
-        return null;
+        return schoolClassRepository.findAll().stream().map((s) -> modelMapper.map(s, SchoolClassDto.class)).collect(Collectors.toList());
     }
 
     @Transactional

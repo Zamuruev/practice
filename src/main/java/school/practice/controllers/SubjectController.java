@@ -13,7 +13,7 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
     @GetMapping("/subjects")
-    Iterable<SubjectDto> all(){return subjectService.getAll();}
+    public Iterable<SubjectDto> all(){return subjectService.getAll();}
 
     @PostMapping("/newSubject")
     SubjectDto newSubject(@RequestBody SubjectDto newSubject){return subjectService.register(newSubject);}

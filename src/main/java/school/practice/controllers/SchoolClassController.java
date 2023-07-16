@@ -16,7 +16,7 @@ public class SchoolClassController {
     @Autowired
     private SchoolClassService schoolClassService;
     @GetMapping("/schoolClasses")
-    Iterable<SchoolClassDto> all(){return schoolClassService.getAll();}
+    public Iterable<SchoolClassDto> all(){return schoolClassService.getAll();}
 
     @GetMapping("/schoolclass/{student}")
     SchoolClassDto one(@PathVariable StudentDto student){
@@ -30,7 +30,7 @@ public class SchoolClassController {
     void deleteSchoolClass(@PathVariable SchoolClassDto schoolClass){schoolClassService.expel(schoolClass.getId());}
 
     @GetMapping("/schoolclass/{id}")
-    SchoolClassDto one(@PathVariable Long id){
+    public SchoolClassDto one(@PathVariable Long id){
         Optional<SchoolClassDto> schoolClass = schoolClassService.findSchoolClass(id);
         return schoolClass.orElse(null);
     }

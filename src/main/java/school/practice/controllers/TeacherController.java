@@ -13,7 +13,7 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
     @GetMapping("/teachers")
-    Iterable<TeacherDto> all(){return teacherService.getAll();}
+    public Iterable<TeacherDto> all(){return teacherService.getAll();}
 
     @PostMapping("/newTeacher")
     TeacherDto newTeacher(@RequestBody TeacherDto newTeacher){return teacherService.register(newTeacher);}

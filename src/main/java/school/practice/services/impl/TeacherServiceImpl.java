@@ -3,6 +3,7 @@ package school.practice.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.TeacherDto;
 import school.practice.repositories.TeacherRepository;
 import school.practice.services.TeacherService;
@@ -29,7 +30,7 @@ public class TeacherServiceImpl implements TeacherService<Long> {
     }
     @Override
     public List<TeacherDto> getAll() {
-        return null;
+        return teacherRepository.findAll().stream().map((s) -> modelMapper.map(s, TeacherDto.class)).collect(Collectors.toList());
     }
 
     @Override
