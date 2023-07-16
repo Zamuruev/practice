@@ -8,7 +8,6 @@ public class StudentDto {
     private Long phone;
 
     private Long schoolClassId;
-    private SchoolClassDto schoolClassDto;
 
     public StudentDto(Long id, String surname, String name, String fatherName, Long phone, Long schoolClassId) {
         this.id = id;
@@ -69,13 +68,6 @@ public class StudentDto {
         this.schoolClassId = schoolClassId;
     }
 
-    public SchoolClassDto getSchoolClassDto() {
-        return schoolClassDto;
-    }
-
-    public void setSchoolClassDto(SchoolClassDto schoolClassDto) {
-        this.schoolClassDto = schoolClassDto;
-    }
 
     @Override
     public String toString() {

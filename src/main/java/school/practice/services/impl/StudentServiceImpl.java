@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import school.practice.controllers.SchoolClassNotFoundException;
-import school.practice.controllers.StudentNotFoundException;
 import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.models.SchoolClass;
@@ -67,9 +66,11 @@ public class StudentServiceImpl implements StudentService<Long> {
 
     @Override
     public List<StudentDto> findAllBySurname(String surname) {
-        return studentRepository.findAllBySurname(surname).stream().map((s) -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
+        List<Student> students = studentRepository.findAllBySurname(surname);
+        return students.stream()
+                .map(student -> modelMapper.map(student, StudentDto.class))
+                .collect(Collectors.toList());
     }
-
 
     @Override
     public List<StudentDto> getAll() {

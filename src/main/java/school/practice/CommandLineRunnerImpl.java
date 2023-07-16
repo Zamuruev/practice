@@ -40,17 +40,17 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         SchoolClassDto c1 = new SchoolClassDto(Long.parseLong("1"), "7А", null);
         SchoolClassDto c2 = new SchoolClassDto(Long.parseLong("2"), "8Б", null);
 
-        // Регистрируем SchoolClassDto и получаем обновленные объекты с установленными идентификаторами
+// Регистрируем SchoolClassDto и получаем обновленные объекты с установленными идентификаторами
         c1 = schoolClassService.register(c1);
         c2 = schoolClassService.register(c2);
 
-        // Создаем студентов
-        StudentDto s1 = new StudentDto(Long.parseLong("1"),"Брежнева", "Алена", "Владимировна", Long.parseLong("89250437014"),Long.parseLong("1"));
-        StudentDto s2 = new StudentDto(Long.parseLong("2"),"Замуруев", "Роман", "Романович", Long.parseLong("8921414014"), Long.parseLong("1"));
-        StudentDto s3 = new StudentDto(Long.parseLong("3"),"Мухлынкина", "Валентина", "Викторовна", Long.parseLong("89204927618"), Long.parseLong("2"));
-        StudentDto s4 = new StudentDto(Long.parseLong("4"),"Карпушин", "Андрей", "Славович", Long.parseLong("8925023514"), Long.parseLong("2"));
+// Создаем студентов
+        StudentDto s1 = new StudentDto(Long.parseLong("1"),"Брежнева", "Алена", "Владимировна", Long.parseLong("89250437014"), c1.getId());
+        StudentDto s2 = new StudentDto(Long.parseLong("2"),"Замуруев", "Роман", "Романович", Long.parseLong("8921414014"), c1.getId());
+        StudentDto s3 = new StudentDto(Long.parseLong("3"),"Мухлынкина", "Валентина", "Викторовна", Long.parseLong("89204927618"), c2.getId());
+        StudentDto s4 = new StudentDto(Long.parseLong("4"),"Карпушин", "Андрей", "Славович", Long.parseLong("8925023514"), c2.getId());
 
-        // Регистрируем студентов
+// Регистрируем студентов
         s1 = studentService.register(s1);
         s2 = studentService.register(s2);
         s3 = studentService.register(s3);

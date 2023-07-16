@@ -5,6 +5,7 @@ import school.practice.dtos.SchoolClassDto;
 import school.practice.dtos.StudentDto;
 import school.practice.services.StudentService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -13,29 +14,37 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("/students")
-    Iterable<StudentDto> all(){return studentService.getAll();}
+    public Iterable<StudentDto> all() {
+        return studentService.getAll();
+    }
 
     @PostMapping("/students")
-    StudentDto newStudent(@RequestBody StudentDto newStudent){return studentService.register(newStudent);}
-
-    @GetMapping("/students/{schoolClassName}")
-    StudentDto one(@PathVariable SchoolClassDto schoolClass){
-        return (StudentDto) studentService.findStudentsBySchoolClass(schoolClass.getName());
+    public StudentDto newStudent(@RequestBody StudentDto newStudent) {
+        return studentService.register(newStudent);
     }
 
-    @GetMapping("/student/{surname}")
-    StudentDto one(@PathVariable StudentDto student){
-        return (StudentDto) studentService.findAllBySurname(student.getSurname());
+    @GetMapping("/students/byClass/{schoolClassName}")
+    public List<StudentDto> findBySchoolClassName(@PathVariable String schoolClassName) {
+        return studentService.findStudentsBySchoolClass(schoolClassName);
     }
 
-    @DeleteMapping("/student/delete/{id}")
-    void deleteStudent(@PathVariable Long id){studentService.expel(id);}
+    @GetMapping("/students/bySurname/{surname}")
+    public List<StudentDto> findBySurname(@PathVariable String surname) {
+        return studentService.findAllBySurname(surname);
+    }
 
-    @DeleteMapping("/student/{student}")
-    void deleteStudent(@PathVariable StudentDto student){studentService.expel(student.getId());}
+    @DeleteMapping("/students/delete/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentService.expel(id);
+    }
 
-    @GetMapping("/student/{id}")
-    StudentDto one(@PathVariable Long id){
+    @DeleteMapping("/students/deleteByDto")
+    public void deleteStudent(@RequestBody StudentDto studentDto) {
+        studentService.expel(studentDto);
+    }
+
+    @GetMapping("/students/{id}")
+    public StudentDto one(@PathVariable Long id) {
         Optional<StudentDto> studentDto = studentService.findStudent(id);
         return studentDto.orElse(null);
     }

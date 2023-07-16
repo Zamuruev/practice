@@ -19,10 +19,12 @@ public interface StudentService<ID> {
 
     List<StudentDto> findStudentsBySchoolClass(String schoolClassName);
 
-    List<StudentDto> findAllBySurname(String surname);
 
     List<StudentDto> getAll();
 
     Optional<StudentDto> findStudent(ID id);
+
+    List<StudentDto> findAllBySurname(String surname);
+
 
 }
